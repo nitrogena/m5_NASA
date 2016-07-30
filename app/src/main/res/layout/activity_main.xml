@@ -13,47 +13,49 @@
     <ImageView
         android:id="@+id/amain_iv_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="350dp"
+        tools:src="@mipmap/ic_launcher"
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/amain_tv_copyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/copyright" />
     <TextView
         android:id="@+id/amain_tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/date" />
     <TextView
         android:id="@+id/amain_tv_explanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <TextView
+        android:text="@string/explanation" />
+    <!--<TextView
         android:id="@+id/amain_tv_hdurl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!" />-->
     <TextView
         android:id="@+id/amain_tv_mediaType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/mediatype" />
     <TextView
         android:id="@+id/amain_tv_serviceVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/serviceversion" />
     <TextView
         android:id="@+id/amain_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <TextView
+        android:text="@string/title" />
+    <!--<TextView
         android:id="@+id/amain_tv_url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!" />-->
 
 </LinearLayout>
