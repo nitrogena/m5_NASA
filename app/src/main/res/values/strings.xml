@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">NASA</string>
+
+    <string name="copyright">Copyright: </string>
+    <string name="date">date: </string>
+    <string name="explanation">Explanation: </string>
+    <string name="hdurl">Hdurl: </string>
+    <string name="mediatype">Media Type: </string>
+    <string name="serviceversion">Service Version: </string>
+    <string name="title">Title: </string>
+    <string name="url">URL: </string>
+
+
 </resources>
