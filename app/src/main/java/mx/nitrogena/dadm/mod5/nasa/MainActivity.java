@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import mx.nitrogena.dadm.mod5.nasa.data.ApodService;
 import mx.nitrogena.dadm.mod5.nasa.data.Data;
 import mx.nitrogena.dadm.mod5.nasa.model.APOD;
@@ -17,7 +19,16 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    //USANDO LA CLASE DE BUTTER KNIFE
+    @BindView(R.id.amain_tv_copyright) TextView tvCopyright;
+    @BindView(R.id.amain_tv_date) TextView tvDate;
+    @BindView(R.id.amain_tv_explanation) TextView tvExplanation;
+   // @BindView(R.id.amain_tv_hdurl) TextView tvHdurl;
+    @BindView(R.id.amain_tv_mediaType) TextView tvMediaType;
+    @BindView(R.id.amain_tv_serviceVersion) TextView tvServiceVersion;
+    @BindView(R.id.amain_tv_title) TextView tvTitle;
+    //@BindView(R.id.amain_tv_url) TextView tvUrl;
+    @BindView(R.id.amain_iv_img) ImageView ivImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Log.d("build config", BuildConfig.URLDEBUG);
-
+        /*
         final TextView tvCopyright = (TextView) findViewById(R.id.amain_tv_copyright);
         final TextView tvDate = (TextView) findViewById(R.id.amain_tv_date);
         final TextView tvExplanation = (TextView) findViewById(R.id.amain_tv_explanation);
@@ -36,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         final TextView tvUrl = (TextView) findViewById(R.id.amain_tv_url);
 
         final ImageView ivImg = (ImageView) findViewById(R.id.amain_iv_img);
+        */
 
+        ButterKnife.bind(this);
 
         ApodService apodService = Data.getRetrofitInstance().create(ApodService.class);
         //Call<APOD> callApodService = apodService.getTodayApod();
@@ -51,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 tvCopyright.setText(response.body().getCopyright());
                 tvDate.setText(response.body().getDate());
                 tvExplanation.setText(response.body().getExplanation());
-                tvHdurl.setText(response.body().getHdurl());
+                //tvHdurl.setText(response.body().getHdurl());
                 tvMediaType.setText(response.body().getMediaType());
                 tvServiceVersion.setText(response.body().getServiceVersion());
                 tvTitle.setText(response.body().getTitle());
-                tvUrl.setText(response.body().getUrl());
+                //tvUrl.setText(response.body().getUrl());
 
 
                 String url1 = response.body().getUrl();
