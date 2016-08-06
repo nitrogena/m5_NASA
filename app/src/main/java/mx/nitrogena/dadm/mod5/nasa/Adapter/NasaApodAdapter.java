@@ -21,7 +21,20 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
     private List<Photo> lstFotos;
 
+    //se puso el 6-8-16 para crear el itemcliclistener
+    private OnItemClickListener onItemClickListener;
+ //   private List<Photo> marsPhotos;
+
+    //se puso el 6-8-16 para crear el itemcliclistener, podemos tener los N constructores que deseemos
+    public NasaApodAdapter(){
+
+    }
+
+    //retrofit hacia el adaptador
+
+
     public NasaApodAdapter(List<Photo> photos) {
+
         this.lstFotos = photos;
     }
 
@@ -39,25 +52,22 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
     public void onBindViewHolder(NasaApodViewHolder holder, int position) {
         //QUE METODO SE USARA EN LAS VISTAS, SE USARA EN EL RECYCLER VIEW
         /*
-        APOD apod = lstAPOD.get(position);
+
         if (apod.getMediaType().equals("image")){
             Picasso.with(holder.ivImg.getContext())
                     .load(apod.getUrl())
                     .into(holder.ivImg);
         }
-        holder.tvTitle.setText(apod.getTitle());
+
 */
 
-        /*
-        List<Photo> photos = new ArrayList<Photo>();
-        photos = response.body().getPhotos();
 
-        photos.get(0);
-        */
         Photo foto = lstFotos.get(position);
         holder.ivImg.setImageURI(foto.getImgSrc());
 
-        /*Picasso.with(holder.ivImg.getContext())
+
+        /*Ya no es necesario porqu usamos fresco 6-8-16
+        Picasso.with(holder.ivImg.getContext())
                     .load(foto.getImgSrc())
                     .into(holder.ivImg);*/
 
@@ -65,10 +75,29 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
         holder.tvCameraFullName.setText(foto.getCamera().getFullName());
 
+        //6-8-16 para crear el itemcliclistener, objeto cambia dependiendo de la posicion en el recycler view
+        //le estamos pasando ¿la foto? a la referencia onItemClickListener
+        holder.setItemClick(foto, onItemClickListener);
+
     }
 
     @Override
     public int getItemCount() {
         return lstFotos != null? lstFotos.size() : 0;
+    }
+
+    //para permitir comunicacion view holder, adapter y la implementacion, 6-8-16 para crear el itemcliclistener
+    public interface OnItemClickListener{
+        void onItemClick(Photo photo);
+    }
+
+    public void setMarsPhotos(List<Photo> marsPhotos){
+        this.lstFotos = marsPhotos;
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+
     }
 }

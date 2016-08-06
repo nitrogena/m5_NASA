@@ -42,6 +42,16 @@ public class ListActivity extends AppCompatActivity {
         marsRoverListRecycler.setLayoutManager(linearLayoutManager);
 
 
+        //6-8-16 Creamos adaptador
+        final NasaApodAdapter nasaApodAdapter = new NasaApodAdapter();
+        nasaApodAdapter.setOnItemClickListener(new NasaApodAdapter.OnItemClickListener(){
+
+                                                   @Override
+                                                   public void onItemClick(Photo photo) {
+                                                       Log.d("log:", "dentro de onItemClic");
+                                                   }
+                                               });
+
         ApodService apodService = Data.getRetrofitInstance().create(ApodService.class);
         //Call<APOD> callApodService = apodService.getTodayApod();
         //SE PUEDE USAR LA FORMA DE ARRIBA O LA DE ABAJO, ES LO MISMO
@@ -51,9 +61,12 @@ public class ListActivity extends AppCompatActivity {
             public void onResponse(Call<MarsRoverResponse> call, Response<MarsRoverResponse> response) {
                 //ESTAMOS OBTENIENDO LOS VALORES DEL JSON QUE USAMOS
 
-                marsRoverListRecycler.setAdapter(new NasaApodAdapter(response.body().getPhotos()));
+                //se quito el 6-8-16
+                //marsRoverListRecycler.setAdapter(new NasaApodAdapter(response.body().getPhotos()));
 
-
+                //se agrego el 6-8-16
+                nasaApodAdapter.setMarsPhotos(response.body().getPhotos());
+                marsRoverListRecycler.setAdapter(nasaApodAdapter);
 
             }
 
