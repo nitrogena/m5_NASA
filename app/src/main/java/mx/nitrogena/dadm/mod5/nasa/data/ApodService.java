@@ -24,7 +24,7 @@ public interface ApodService {
     Call<APOD> getTodayApodWithQuery(@Query("api_key") String apiKey);
     //PARAMETRO QUE NECESITA EL ENDPOINT: "api_key"
 
-    @GET("mars-photos")
+    @GET("mars-photos/api/v1/rovers/curiosity/photos")
     Call<MarsRoverResponse> getTodayMarsRoverResponseWithQuery(@Query("sol") int sol, @Query("api_key") String apiKey);
 
 

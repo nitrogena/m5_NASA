@@ -32,7 +32,7 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
         //CREO INSTANCIA y se le pone el inflater que es como un setcontetView, le digo que xml se va usar
         //inflate regresa una vista
         //contexto: donde vamos a utilizar las cosas
-        return new NasaApodViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.nasa_apod_layout, parent, false));
+        return new NasaApodViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_cardview, parent, false));
     }
 
     @Override
@@ -55,11 +55,13 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
         photos.get(0);
         */
         Photo foto = lstFotos.get(position);
-        holder.ivImg.setImageURI(Uri.parse(foto.getImgSrc()));
+        holder.ivImg.setImageURI(foto.getImgSrc());
 
-        Picasso.with(holder.ivImg.getContext())
+        /*Picasso.with(holder.ivImg.getContext())
                     .load(foto.getImgSrc())
-                    .into(holder.ivImg);
+                    .into(holder.ivImg);*/
+
+
 
         holder.tvCameraFullName.setText(foto.getCamera().getFullName());
 

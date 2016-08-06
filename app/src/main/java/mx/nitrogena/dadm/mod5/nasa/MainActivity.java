@@ -1,8 +1,10 @@
 package mx.nitrogena.dadm.mod5.nasa;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     //USANDO LA CLASE DE BUTTER KNIFE
     @BindView(R.id.amain_tv_copyright) TextView tvCopyright;
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView ivImg = (ImageView) findViewById(R.id.amain_iv_img);
         */
+
+        findViewById(R.id.amain_btn_ir).setOnClickListener(this);
 
         ButterKnife.bind(this);
 
@@ -86,4 +90,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.amain_btn_ir:
+                irLista();
+                break;
+
+        }
+    }
+
+
+
+    private void irLista() {
+        Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+        startActivity(intent);
+    }
+
 }
