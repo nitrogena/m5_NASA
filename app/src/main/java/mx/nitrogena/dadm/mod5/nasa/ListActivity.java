@@ -1,5 +1,6 @@
 package mx.nitrogena.dadm.mod5.nasa;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -32,6 +33,8 @@ public class ListActivity extends AppCompatActivity {
     @BindView(R.id.nasaapodlayout_rv_recyclerv)
     RecyclerView marsRoverListRecycler;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +49,18 @@ public class ListActivity extends AppCompatActivity {
         final NasaApodAdapter nasaApodAdapter = new NasaApodAdapter();
         nasaApodAdapter.setOnItemClickListener(new NasaApodAdapter.OnItemClickListener(){
 
-                                                   @Override
-                                                   public void onItemClick(Photo photo) {
-                                                       Log.d("log:", "dentro de onItemClic");
-                                                   }
-                                               });
+            @Override
+            public void onItemClick(Photo photo) {
+                Log.d("log:", photo.getCamera().getFullName());
+
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                intent.putExtra("cameraFullname", photo.getCamera().getFullName());
+                intent.putExtra("earthdate", photo.getEarthDate());
+                intent.putExtra("class", photo.getClass());
+                startActivity(intent);
+            }
+
+        });
 
         ApodService apodService = Data.getRetrofitInstance().create(ApodService.class);
         //Call<APOD> callApodService = apodService.getTodayApod();
