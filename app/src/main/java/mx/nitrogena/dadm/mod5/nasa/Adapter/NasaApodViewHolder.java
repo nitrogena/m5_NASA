@@ -15,15 +15,13 @@ import mx.nitrogena.dadm.mod5.nasa.R;
 public class NasaApodViewHolder extends RecyclerView.ViewHolder{
 
     //CON BIND VIEW YA NO TENGO QUE USAR EL METODO A MANITA
-    @BindView(R.id.amain_tv_copyright) TextView tvCopyright;
-    @BindView(R.id.amain_tv_date) TextView tvDate;
-    @BindView(R.id.amain_tv_explanation) TextView tvExplanation;
-    // @BindView(R.id.amain_tv_hdurl) TextView tvHdurl;
-    @BindView(R.id.amain_tv_mediaType) TextView tvMediaType;
-    @BindView(R.id.amain_tv_serviceVersion) TextView tvServiceVersion;
-    @BindView(R.id.amain_tv_title) TextView tvTitle;
-    //@BindView(R.id.amain_tv_url) TextView tvUrl;
-    @BindView(R.id.amain_iv_img) ImageView ivImg;
+    @BindView(R.id.alistcv_tv_id) TextView tvId;
+    @BindView(R.id.alistcv_tv_sol) TextView tvSol;
+    @BindView(R.id.alistcv_tv_earthDate) TextView tvEarthDate;
+
+    @BindView(R.id.alistcv_tv_camera_fullName) TextView tvCameraFullName;
+
+    @BindView(R.id.alistcv_iv_img) ImageView ivImg;
 
 
 //HACER RECICLAJE Y HACER ASOCIACION DE VISTAS

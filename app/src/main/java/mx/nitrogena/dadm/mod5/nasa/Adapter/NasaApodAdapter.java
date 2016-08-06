@@ -1,5 +1,6 @@
 package mx.nitrogena.dadm.mod5.nasa.Adapter;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -53,7 +54,14 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>{
 
         photos.get(0);
         */
+        Photo foto = lstFotos.get(position);
+        holder.ivImg.setImageURI(Uri.parse(foto.getImgSrc()));
 
+        Picasso.with(holder.ivImg.getContext())
+                    .load(foto.getImgSrc())
+                    .into(holder.ivImg);
+
+        holder.tvCameraFullName.setText(foto.getCamera().getFullName());
 
     }
 
