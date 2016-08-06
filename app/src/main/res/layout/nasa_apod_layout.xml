@@ -3,6 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/nasaapodlayout_rv_recyclerv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <!--
     <ImageView
         android:id="@+id/amain_iv_img"
         android:layout_width="match_parent"
@@ -27,11 +35,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/explanation" />
+        -->
     <!--<TextView
         android:id="@+id/amain_tv_hdurl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />-->
+    <!--
     <TextView
         android:id="@+id/amain_tv_mediaType"
         android:layout_width="wrap_content"
@@ -48,5 +58,5 @@
         android:layout_height="wrap_content"
         android:text="@string/copyright" />
 
-
+-->
 </LinearLayout>

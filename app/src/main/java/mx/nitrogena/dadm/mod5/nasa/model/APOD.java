@@ -1,7 +1,7 @@
 package mx.nitrogena.dadm.mod5.nasa.model;
 
 import com.google.gson.annotations.SerializedName;
-//ESTA BIB ES COMO UN PARSER, MATCH DE OBJETO JASON Y OBJETO JAVA
+//ESTA biblioteca ES COMO UN PARSER, MATCH DE OBJETO JASON Y OBJETO JAVA
 //ASOCIACION DE VALORES
 
 /**

@@ -1,6 +1,7 @@
 package mx.nitrogena.dadm.mod5.nasa.data;
 
 import mx.nitrogena.dadm.mod5.nasa.model.APOD;
+import mx.nitrogena.dadm.mod5.nasa.model.MarsRoverResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -22,6 +23,9 @@ public interface ApodService {
     @GET("planetary/apod")
     Call<APOD> getTodayApodWithQuery(@Query("api_key") String apiKey);
     //PARAMETRO QUE NECESITA EL ENDPOINT: "api_key"
+
+    @GET("mars-photos")
+    Call<MarsRoverResponse> getTodayMarsRoverResponseWithQuery(@Query("sol") int sol, @Query("api_key") String apiKey);
 
 
 }
