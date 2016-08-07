@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         //Log.d("build config", BuildConfig.URLDEBUG);
         /*
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.amain_btn_ir).setOnClickListener(this);
 
-        ButterKnife.bind(this);
+
 
         ApodService apodService = Data.getRetrofitInstance().create(ApodService.class);
         //Call<APOD> callApodService = apodService.getTodayApod();
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void irLista() {
-        Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+        Intent intent = new Intent(MainActivity.this, ListActivity.class);
         startActivity(intent);
     }
 

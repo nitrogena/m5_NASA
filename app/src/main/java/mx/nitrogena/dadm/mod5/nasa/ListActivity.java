@@ -51,12 +51,16 @@ public class ListActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(Photo photo) {
-                Log.d("log:", photo.getCamera().getFullName());
+                Log.d("log - titulo: ", photo.getCamera().getFullName());
+                Log.d("log - earthDATE: ", photo.getEarthDate());
 
-                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+
+                Intent intent = new Intent(ListActivity.this, DetailActivity.class);
                 intent.putExtra("cameraFullname", photo.getCamera().getFullName());
                 intent.putExtra("earthdate", photo.getEarthDate());
-                intent.putExtra("class", photo.getClass());
+                intent.putExtra("img", photo.getImgSrc());
+                intent.putExtra("roverLandingdate", photo.getRover().getLandingDate());
+
                 startActivity(intent);
             }
 
@@ -75,9 +79,9 @@ public class ListActivity extends AppCompatActivity {
                 //marsRoverListRecycler.setAdapter(new NasaApodAdapter(response.body().getPhotos()));
 
                 //se agrego el 6-8-16
+
                 nasaApodAdapter.setMarsPhotos(response.body().getPhotos());
                 marsRoverListRecycler.setAdapter(nasaApodAdapter);
-
             }
 
             @Override
