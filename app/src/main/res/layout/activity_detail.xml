@@ -33,9 +33,21 @@
         android:text="earth date"/>
 
     <TextView
-        android:id="@+id/adetail_tv_class"
+        android:id="@+id/adetail_tv_roverLandingdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="class"/>
+
+    <ImageView
+        android:id="@+id/adetail_iv_img"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:id="@+id/adetail_btn_regresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regresar"/>
 
 </LinearLayout>
