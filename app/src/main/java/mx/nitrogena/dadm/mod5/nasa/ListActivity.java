@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.squareup.picasso.Picasso;
@@ -41,6 +42,14 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.nasa_apod_layout);
         ButterKnife.bind(this);
 
+
+        // Find the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         marsRoverListRecycler.setLayoutManager(linearLayoutManager);
 
@@ -53,11 +62,13 @@ public class ListActivity extends AppCompatActivity {
             public void onItemClick(Photo photo) {
                 Log.d("log:", photo.getCamera().getFullName());
 
+                /**/
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                 intent.putExtra("cameraFullname", photo.getCamera().getFullName());
                 intent.putExtra("earthdate", photo.getEarthDate());
                 intent.putExtra("class", photo.getClass());
                 startActivity(intent);
+                /**/
             }
 
         });
