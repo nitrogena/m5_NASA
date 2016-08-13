@@ -1,15 +1,21 @@
 package mx.nitrogena.dadm.mod5.nasa.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -40,7 +46,7 @@ public class TodayApodFragment extends Fragment {
     @BindView(R.id.amain_iv_img) ImageView ivImg;
 
 
-
+    public String strUrl;
 
     public static TodayApodFragment newInstance(String name)
     {
@@ -50,6 +56,15 @@ public class TodayApodFragment extends Fragment {
         f.setArguments(b);
         return f;
     }
+
+
+    public void onCreate(@Nullable Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
+
 
     @Nullable
     @Override
@@ -87,10 +102,10 @@ public class TodayApodFragment extends Fragment {
                 //tvUrl.setText(response.body().getUrl());
 
 
-                String url1 = response.body().getUrl();
+                strUrl = response.body().getUrl();
 
 
-                Picasso.with(getActivity()).load(url1).into(ivImg);
+                Picasso.with(getActivity()).load(strUrl).into(ivImg);
 
             }
 
@@ -104,4 +119,34 @@ public class TodayApodFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        inflater.inflate(R.menu.menu_redes, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuRedes_share_today_apod:
+                //Toast.makeText(getActivity(), "Hola", Toast.LENGTH_LONG ).show();
+                Snackbar.make(getView(), "Share", Snackbar.LENGTH_SHORT).show();
+
+                shareText("APP: " + strUrl);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void shareText(String text){
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+        startActivity(Intent.createChooser(shareIntent, "Compartir"));
+    }
+
+
+
 }

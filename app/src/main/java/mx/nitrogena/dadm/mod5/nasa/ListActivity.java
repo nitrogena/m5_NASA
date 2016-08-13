@@ -1,5 +1,8 @@
 package mx.nitrogena.dadm.mod5.nasa;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -7,8 +10,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +62,35 @@ public class ListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo("mx.nitrogena.dadm.mod5.nasa",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /*https://guides.codepath.com/android/Using-the-App-ToolBar*/
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
@@ -71,12 +108,11 @@ public class ListActivity extends AppCompatActivity {
                         replaceFragments(ListFragment.newInstance("names"));
                         return true;
 
-                    /*
+
                     case R.id.menuuno_opcionTres:
-                        Snackbar.make(findViewById(android.id.content), "Favorites", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content), "Opcion tres", Snackbar.LENGTH_SHORT).show();
                         return true;
 
-                    */
                 }
                 return true;        //se supone que no va
 
