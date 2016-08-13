@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="250dp"
     android:background="@color/colorPrimaryDark"
     >
 
-    <TextView
-        android:id="@+id/nheader_tv_algo"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/user_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Layout nuevo"/>
+        android:layout_margin="15dp">
+
+    </com.facebook.drawee.view.SimpleDraweeView>
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="USER_NAME"/>
 
 </LinearLayout>

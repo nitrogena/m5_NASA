@@ -14,6 +14,15 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -61,7 +70,7 @@ public class ListActivity extends AppCompatActivity {
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
 
-
+/*
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo("mx.nitrogena.dadm.mod5.nasa",
@@ -77,7 +86,7 @@ public class ListActivity extends AppCompatActivity {
 
         }
 
-
+*/
 
 
 
@@ -193,6 +202,7 @@ public class ListActivity extends AppCompatActivity {
 
         */
 
+        getFBUserInfo();
     }
 
     private void replaceFragment(TodayApodFragment f){
@@ -205,4 +215,40 @@ public class ListActivity extends AppCompatActivity {
         getFragmentManager().beginTransaction().replace(R.id.fragmentHolder, f).commit();
     }
 
+
+    private void getFBUserInfo() {
+        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
+        new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                try {
+                    Log.d("name", object.getString("name"));
+                    Log.d("id", object.getString("id"));
+
+                    SimpleDraweeView userImae = (SimpleDraweeView) findViewById(R.id.user_image);
+                    userImae.setImageURI("http://graph.facebook.com/"+ object.getString("id") + "/pictur?type=large");
+                    TextView userName = (TextView) findViewById(R.id.user_name);
+                    userName.setText(object.getString("name"));
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+        request.executeAsync();
+    }
+
+        /*
+       interface UserDataCallback{
+           void userData(FBUser user);
+       }
+    */
+
+
+    /*https://developers.facebook.com/quickstarts/297876327242282/?platform=android*/
 }

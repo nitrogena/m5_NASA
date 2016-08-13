@@ -14,6 +14,7 @@ import com.facebook.login.widget.LoginButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mx.nitrogena.dadm.mod5.nasa.ListActivity;
 import mx.nitrogena.dadm.mod5.nasa.R;
 
 public class FBLoginActivity extends AppCompatActivity implements FacebookCallback<LoginResult>{
@@ -40,12 +41,16 @@ public class FBLoginActivity extends AppCompatActivity implements FacebookCallba
 
         if (AccessToken.getCurrentAccessToken() != null){
             Snackbar.make(findViewById(android.R.id.content), "Login", Snackbar.LENGTH_SHORT).show();
+
+            startActivity(new Intent(this, ListActivity.class));
         }
     }
 
     @Override
     public void onSuccess(LoginResult loginResult) {
-        Snackbar.make(findViewById(android.R.id.content), "Login", Snackbar.LENGTH_SHORT).show();
+        //Snackbar.make(findViewById(android.R.id.content), "Login", Snackbar.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this, ListActivity.class));
     }
 
     @Override
