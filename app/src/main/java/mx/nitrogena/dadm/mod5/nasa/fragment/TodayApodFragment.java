@@ -1,11 +1,13 @@
-package mx.nitrogena.dadm.mod5.nasa;
+package mx.nitrogena.dadm.mod5.nasa.fragment;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mx.nitrogena.dadm.mod5.nasa.R;
 import mx.nitrogena.dadm.mod5.nasa.data.ApodService;
 import mx.nitrogena.dadm.mod5.nasa.data.Data;
 import mx.nitrogena.dadm.mod5.nasa.model.APOD;
@@ -20,7 +23,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+/**
+ * Created by Alumno on 12/08/2016.
+ */
+public class TodayApodFragment extends Fragment {
 
     //USANDO LA CLASE DE BUTTER KNIFE
     @BindView(R.id.amain_tv_copyright) TextView tvCopyright;
@@ -34,35 +40,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.amain_iv_img) ImageView ivImg;
 
 
+
+
+    public static TodayApodFragment newInstance(String name)
+    {
+        TodayApodFragment f = new TodayApodFragment();
+        Bundle b = new Bundle();
+        b.putString("user_key", name);
+        f.setArguments(b);
+        return f;
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_main, container, false);
 
+        ButterKnife.bind(this, view);
 
-        // Find the toolbar view inside the activity layout
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    /*Preguntar como se usa el toolbar en fragment
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
-
-        //Log.d("build config", BuildConfig.URLDEBUG);
-        /*
-        final TextView tvCopyright = (TextView) findViewById(R.id.amain_tv_copyright);
-        final TextView tvDate = (TextView) findViewById(R.id.amain_tv_date);
-        final TextView tvExplanation = (TextView) findViewById(R.id.amain_tv_explanation);
-        final TextView tvHdurl = (TextView) findViewById(R.id.amain_tv_hdurl);
-        final TextView tvMediaType = (TextView) findViewById(R.id.amain_tv_mediaType);
-        final TextView tvServiceVersion = (TextView) findViewById(R.id.amain_tv_serviceVersion);
-        final TextView tvTitle = (TextView) findViewById(R.id.amain_tv_title);
-        final TextView tvUrl = (TextView) findViewById(R.id.amain_tv_url);
-
-        final ImageView ivImg = (ImageView) findViewById(R.id.amain_iv_img);
-        */
-
-        findViewById(R.id.amain_btn_ir).setOnClickListener(this);
-
+*/
 
 
         ApodService apodService = Data.getRetrofitInstance().create(ApodService.class);
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String url1 = response.body().getUrl();
 
 
-                Picasso.with(MainActivity.this).load(url1).into(ivImg);
+                Picasso.with(getActivity()).load(url1).into(ivImg);
 
             }
 
@@ -99,24 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
+
+        return view;
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId())
-        {
-            case R.id.amain_btn_ir:
-                irLista();
-                break;
-
-        }
-    }
-
-
-
-    private void irLista() {
-        Intent intent = new Intent(MainActivity.this, ListActivity.class);
-        startActivity(intent);
-    }
-
 }

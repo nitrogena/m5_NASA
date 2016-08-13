@@ -36,7 +36,7 @@
         android:id="@+id/adetail_tv_roverLandingdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="class"/>
+        android:text="rover landing date"/>
 
     <ImageView
         android:id="@+id/adetail_iv_img"

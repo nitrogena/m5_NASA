@@ -9,6 +9,7 @@
     <string name="serviceversion">Service Version: </string>
     <string name="title">Title: </string>
     <string name="url">URL: </string>
+    <string name="amain_btn_ir">Mostrar lista</string>
 
 
 </resources>

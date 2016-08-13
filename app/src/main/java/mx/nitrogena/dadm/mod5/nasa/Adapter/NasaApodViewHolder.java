@@ -21,7 +21,6 @@ public class NasaApodViewHolder extends RecyclerView.ViewHolder{
 
     //CON BIND VIEW YA NO TENGO QUE USAR EL METODO A MANITA  5-8-16
    /* @BindView(R.id.alistcv_tv_id) TextView tvId;
-
     @BindView(R.id.alistcv_tv_sol) TextView tvSol;
     @BindView(R.id.alistcv_tv_earthDate) TextView tvEarthDate;*/
 
