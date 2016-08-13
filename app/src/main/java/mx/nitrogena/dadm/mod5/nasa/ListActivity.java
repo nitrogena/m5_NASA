@@ -67,8 +67,8 @@ public class ListActivity extends AppCompatActivity {
                         return true;
 
 
-                    case R.id.menuuno_opcionDos;
-                        replaceFragments(ListFragment.newInstance());
+                    case R.id.menuuno_opcionDos:
+                        replaceFragments(ListFragment.newInstance("names"));
                         return true;
 
                     /*
