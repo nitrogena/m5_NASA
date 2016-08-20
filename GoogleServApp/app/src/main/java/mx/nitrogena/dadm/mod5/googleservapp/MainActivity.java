@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        findViewById(R.id.amain_btn_maps).setOnClickListener(MainActivity.this);
-        findViewById(R.id.amain_btn_admob).setOnClickListener(MainActivity.this);
+        findViewById(R.id.amain_btn_maps).setOnClickListener(this);
+        findViewById(R.id.amain_btn_admob).setOnClickListener(this);
         findViewById(R.id.amain_btn_picker).setOnClickListener(MainActivity.this);
 
 
@@ -41,9 +41,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mostrarMapa() {
+        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+        startActivity(intent);
     }
 
     private void adMob() {
+        Intent intent = new Intent(MainActivity.this, AdMobActivity.class);
+        startActivity(intent);
     }
 
     private void irLocationPicker() {
